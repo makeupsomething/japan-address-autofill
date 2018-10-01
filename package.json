@@ -1,8 +1,9 @@
 {
   "name": "japan-address-autofill",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "version": "0.0.2",
+  "private": false,
+  "description": "Get any Japanese street address based on it's postal code",
+  "main": "./lib/index.js",
   "dependencies": {
     "node-fetch": "^2.2.0"
   },
@@ -20,6 +21,27 @@
       "es2015"
     ]
   },
-  "author": "",
-  "license": "ISC"
+  "author": "makeupsomething",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/makeupsomething/japan-address-autofill"
+  },
+  "bugs": {
+    "url": "https://github.com/makeupsomething/japan-address-autofill/issues"
+  },
+  "files": [
+    "lib/*",
+    "src/*",
+    "public/*",
+    "*.json",
+    "*.js"
+  ],
+  "keywords": [
+    "zip",
+    "postal code",
+    "japan",
+    "address",
+    "yubin"
+  ]
 }
