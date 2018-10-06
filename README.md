@@ -11,7 +11,7 @@
 ```js
 import { getAddressByZip } from "japan-address-autofill"
 
-getAddressByZip("1710021")
+getAddressByZip("100-0005")
 .then((response) => {
     console.log(response)
 })
