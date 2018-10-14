@@ -25,7 +25,16 @@ describe("Getting an address", function() {
         });
     });
 
-    it("getting an address with a invalid zipcode", function(done) {
+    it("getting an address with an invalid zipcode", function(done) {
+        var japanAddressAutofill = require('../lib/index.js');
+        japanAddressAutofill.getAddressByZip("1111111")
+        .catch((error) => {
+            expect(error).toBeTruthy();
+            done();
+        });
+    });
+
+    it("getting an address with a long zipcode", function(done) {
         var japanAddressAutofill = require('../lib/index.js');
         japanAddressAutofill.getAddressByZip("100000005")
         .catch((error) => {

@@ -27,14 +27,22 @@ export function getAddressByZip(code) {
         return response.text();
     })
     .then((text) => {
-        let codes = JSON.parse(text.replace("$yubin(", "").replace(");", ""));
-        const { [code]:address } = codes
-        const [ prefId, city, area, street ] = address
-        return {
-            'prefecture': prefectureList[prefId],
-            city,
-            area,
-            street,
+        try {
+            let codes = JSON.parse(text.replace("$yubin(", "").replace(");", ""));
+            const { [code]:address } = codes
+            const [ prefId, city, area, street ] = address
+            return {
+                'prefecture': prefectureList[prefId],
+                city,
+                area,
+                street,
+            }
+        } 
+        catch(error) {
+            return Promise.reject("Could not parse the address, maybe the zipcode in invalid")
         }
+    })
+    .catch((error) => {
+        return Promise.reject(error)
     })
 }
