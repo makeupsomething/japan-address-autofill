@@ -14,6 +14,12 @@ const prefectureList = [
 ];
 
 export function getAddressByZip(code) {
+    if(code.includes("-")) {
+        code = code.replace("-", "")
+    }
+    if(code.length > 7) {
+        return Promise.reject("Too many characters in zip code")
+    }
     let prefCode = code.substring(0, 3)
     let url = `https://yubinbango.github.io/yubinbango-data/data/${prefCode}.js`
     return fetch(url)
@@ -30,5 +36,5 @@ export function getAddressByZip(code) {
             area,
             street,
         }
-    });
+    })
 }
