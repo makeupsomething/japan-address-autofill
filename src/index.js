@@ -14,6 +14,12 @@ const prefectureList = [
 ];
 
 export function getAddressByZip(code) {
+    if(code.includes("-")) {
+        code = code.replace("-", "")
+    }
+    if(code.length > 7) {
+        return Promise.reject("Too many characters in zip code")
+    }
     let prefCode = code.substring(0, 3)
     let url = `https://yubinbango.github.io/yubinbango-data/data/${prefCode}.js`
     return fetch(url)
@@ -21,14 +27,22 @@ export function getAddressByZip(code) {
         return response.text();
     })
     .then((text) => {
-        let codes = JSON.parse(text.replace("$yubin(", "").replace(");", ""));
-        const { [code]:address } = codes
-        const [ prefId, city, area, street ] = address
-        return {
-            'prefecture': prefectureList[prefId],
-            city,
-            area,
-            street,
+        try {
+            let codes = JSON.parse(text.replace("$yubin(", "").replace(");", ""));
+            const { [code]:address } = codes
+            const [ prefId, city, area, street ] = address
+            return {
+                'prefecture': prefectureList[prefId],
+                city,
+                area,
+                street,
+            }
+        } 
+        catch(error) {
+            return Promise.reject("Could not parse the address, maybe the zipcode in invalid")
         }
-    });
+    })
+    .catch((error) => {
+        return Promise.reject(error)
+    })
 }
