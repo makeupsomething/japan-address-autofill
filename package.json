@@ -4,9 +4,6 @@
   "private": false,
   "description": "",
   "main": "./lib/index.js",
-  "dependencies": {
-    "node-fetch": "^2.2.0"
-  },
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
