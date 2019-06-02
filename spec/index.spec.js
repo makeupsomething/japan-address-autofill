@@ -1,22 +1,22 @@
 
 describe("Getting invalid zip codes", () => {
-    // it("getting an address with an invalid zipcode", (done) => {
-    //     var japanAddressAutofill = require('../lib/index.js')
-    //     japanAddressAutofill.getAddressByZip("1111111")
-    //     .catch((error) => {
-    //         expect(error).toBeTruthy()
-    //         done()
-    //     })
-    // })
+    it("getting an address with an invalid zipcode", (done) => {
+        var japanAddressAutofill = require('../lib/index.js')
+        japanAddressAutofill.getAddressByZip("1111111")
+        .catch((error) => {
+            expect(error).toBeTruthy()
+            done()
+        })
+    })
 
-    // it("getting an address with a long zipcode", (done) => {
-    //     var japanAddressAutofill = require('../lib/index.js')
-    //     japanAddressAutofill.getAddressByZip("100000005")
-    //     .catch((error) => {
-    //         expect(error).toBeTruthy()
-    //         done()
-    //     })
-    // })
+    it("getting an address with a long zipcode", (done) => {
+        var japanAddressAutofill = require('../lib/index.js')
+        japanAddressAutofill.getAddressByZip("100000005")
+        .catch((error) => {
+            expect(error).toBeTruthy()
+            done()
+        })
+    })
 })
 
 describe("Getting all prefectures and regions by zipcode", () => {
@@ -78,7 +78,18 @@ describe("Getting all prefectures and regions by zipcode", () => {
         it(`getting an region and prefecture for zipcode ${input.zip}`, (done) => {
             japanAddressAutofill.getAddressByZip(input.zip).then((response) => {
                 const { region, prefecture } = response
-                expect(prefecture).toBe(input.name)
+                
+                expect(prefecture).toBe(prefectures.find(prefecture => {
+                    if(prefecture.id === input.id) {
+                        return prefecture
+                    }
+                }).name)
+
+                expect(region).toBe(regions.find(region => {
+                    if(region.id === input.region) {
+                        return region
+                    }
+                }).name)
                 done()
             })
         })
