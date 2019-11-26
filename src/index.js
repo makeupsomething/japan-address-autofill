@@ -63,8 +63,10 @@ export function getAddressByZip(code) {
     if(code.includes("-")) {
         code = code.replace("-", "")
     }
-    if(code.length != 7) {
-        return Promise.reject("Invalid zip code character length")
+    if(code.length > 7) {
+        return Promise.reject("Too many characters in zip code")
+    } else if (code.length < 7) {
+        return Promise.reject("Not enough characters in zip code")
     }
     let prefCode = code.substring(0, 3)
     const data = require(`./zipdata/zip-${prefCode}`)
