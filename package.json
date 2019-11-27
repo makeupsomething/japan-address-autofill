@@ -1,6 +1,6 @@
 {
   "name": "japan-address-autofill",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "private": false,
   "description": "",
   "main": "./lib/index.js",
@@ -14,7 +14,8 @@
   "scripts": {
     "build": "node_modules/babel-cli/bin/babel.js src --out-dir lib",
     "test": "jasmine",
-    "build-and-test": "npm-run-all build test"
+    "build-and-test": "npm-run-all build test",
+    "publish": "npm publish --access public"
   },
   "babel": {
     "presets": [
