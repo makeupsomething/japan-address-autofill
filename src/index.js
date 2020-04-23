@@ -78,13 +78,12 @@ export function getAddressByZip(code) {
                 return prefecture
             } 
         })
-
         const region = regions.find(region => {
             if(region.id === prefectureData.region) {
                 return region
             }
         })
-        
+
         return Promise.resolve({
             region: region.name,
             prefecture: prefectureData.name,
