@@ -72,16 +72,19 @@ export function getAddressByZip(code) {
     const data = require(`./zipdata/zip-${prefCode}`)
     try {
         const [ prefId, city, area, street ] = data[code]
+
         const prefectureData = prefectures.find(prefecture => {
             if(prefecture.id === prefId) {
                 return prefecture
             } 
         })
+
         const region = regions.find(region => {
             if(region.id === prefectureData.region) {
                 return region
             }
         })
+        
         return Promise.resolve({
             region: region.name,
             prefecture: prefectureData.name,
