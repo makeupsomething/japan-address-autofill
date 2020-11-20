@@ -6,7 +6,7 @@
 
 `npm install japan-address-autofill --save`
 
-<h3>Usage<h3>
+### Usage
 
 ```js
 import { getAddressByZip } from "japan-address-autofill"
